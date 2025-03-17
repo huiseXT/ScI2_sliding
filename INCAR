@@ -1,0 +1,37 @@
+# starting parameters
+SYSTEM = ScI2_AB
+ISTART = 0
+#ICHARG = 2
+LREAL  = .FALSE.
+ENCUT  =  500
+PREC   =  High   #
+LWAVE  = .TRUE.
+LCHARG = .TRUE.
+#Static Calculation
+ISMEAR =  0
+SIGMA  =  0.05
+NELM   =  100
+EDIFF  =  1E-06
+#
+
+# exchange correlation functional
+#GGA = PE
+#IVDW = 11  #not good
+
+LORBIT =11
+LSORBIT = .TRUE.
+
+ISPIN = 2
+MAGMOM = 0 0 -1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0
+SAXIS = 0 0 1          # M fanxiang
+# LDAU
+LDAU = .TRUE.
+LDAUTYPE = 2
+LDAUL = 2 2 -1 -1 -1 -1
+LDAUU = 3 3 0 0 0 0
+LDAUJ = 0 0 0 0 0 0
+
+ALGO=F
+LMAXMIX=4
+
+#MAGMOM = 2*0.947 4*-0.04

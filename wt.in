@@ -1,0 +1,128 @@
+&TB_FILE
+Hrfile = "wannier90_hr.dat"
+Package = 'VASP'             ! obtained from VASP, it could be 'VASP', 'QE', 'Wien2k', 'OpenMx'
+/
+
+LATTICE
+Angstrom
+4.0342998505000001    0.0000000000000000    0.0000000000000000
+-2.0171494600000002    3.4938064255999999    0.0000000000000000
+0.0000000000000000    0.0000000000000000   35.3342437744000009
+
+ATOM_POSITIONS
+ 6 ! number of atoms in unit cell
+Cartisen                          ! Direct or Cartisen coordinat
+Sc      -0.0000018     2.3292053    12.5221470
+Sc       2.0171521     1.1646007    19.8116361
+I        0.0000000     0.0000000    10.6702042
+I        0.0000000     0.0000000    14.3668692
+I       -0.0000018     2.3292053    17.9673245
+I       -0.0000018     2.3292053    21.6645523
+
+PROJECTORS
+ 5 5 3 3 3 3 ! number of projectors for each atom
+ Sc  dz2  dx2-y2  dyz  dxy  dxz 0 0 0.674
+ Sc  dz2  dx2-y2  dyz  dxy  dxz 0 0 0.674
+ I    px  py  pz 0 0 0
+ I    px  py  pz 0 0 0
+ I    px  py  pz 0 0 0
+ I    px  py  pz 0 0 0
+
+!Magnetic moment
+
+!>
+&CONTROL
+BulkBand_calc         = F
+BulkGap_plane_calc    = F
+BulkGap_Cube_calc     = F
+BulkBand_plane_calc   = F
+BulkFS_plane_calc     = F
+FindNodes_calc        = F
+SlabBand_calc         = T
+SlabSS_calc           = T
+SlabArc_calc          = F
+SlabSpintexture_calc  = F
+BerryCurvature_calc   = F
+WeylChirality_calc    = F
+/
+
+&SYSTEM
+NSLAB = 20
+!NSLAB1= 4
+!NSLAB2= 4
+NumOccupied = 26        ! NumOccupied 费米能级一下的能带数*2
+SOC = 1                 ! if the SOC effect is included in you TB model.
+E_FERMI = 0.2        ! e-fermi
+surf_onsite= 0.0        ! surf_onsite
+/
+
+&PARAMETERS
+!Eta_Arc = 0.001     ! infinite small value, like brodening
+!E_arc = 0.0         ! energy for calculate Fermi Arc
+OmegaNum = 2000      ! omega number
+OmegaMin = -0.4     ! energy interval
+OmegaMax =  0.4     ! energy interval
+Nk1 =  200            ! number k points
+Nk2 =  200            ! number k points
+Nk3 =  1             ! number k points
+NP = 1              ! number of principle layers
+Gap_threshold = 0.0001 ! threshold for GapCube output
+/
+
+SURFACE            ! See doc for details
+ 0  1  0
+ 0  0  1
+
+
+KPATH_SLAB
+2        ! numker of k line for 2D case
+G 0.0 0.0 X 0.5 0.0
+X 0.5 0.0 G' 1.0 0.0
+
+WANNIER_CENTRES     ! copy from wannier90.wout  *****
+Cartesian
+0.090814, 2.234694, 12.526878
+-0.000123, 2.270979, 12.528493
+-0.000035, 2.262205, 12.521964
+0.000132, 2.306456, 12.522413
+0.000045, 2.294546, 12.519300
+-0.000128, 2.242488, 12.522600
+-0.000057, 2.254543, 12.519467
+-0.000372, 2.487407, 12.524890
+-0.000071, 2.523155, 12.522024
+0.000440, 2.068154, 12.525039
+0.000105, 2.042593, 12.522228
+1.969835, 1.124710, 19.813544
+1.970350, 1.123802, 19.807342
+1.969932, 1.157267, 19.818210
+1.972902, 1.192487, 19.804578
+1.969801, 1.117252, 19.818009
+1.967776, 1.086846, 19.803150
+1.969878, 1.385319, 19.812731
+1.969799, 1.358009, 19.814161
+1.969842, 0.906032, 19.812500
+1.969671, 0.927587, 19.813637
+-0.000019, -0.002036, 10.572000
+0.000005, -0.002036, 10.611021
+-0.000103, -0.028931, 10.705325
+-0.000008, -0.038700, 10.720141
+0.000109, 0.029945, 10.705358
+0.000005, 0.039275, 10.720209
+0.000008, -0.001811, 14.447303
+-0.000003, -0.001861, 14.403307
+0.000247, -0.029159, 14.332799
+0.000100, -0.038807, 14.318429
+-0.000274, 0.029911, 14.332760
+-0.000105, 0.039124, 14.318362
+-0.000016, 2.272779, 17.924092
+0.000059, 2.272771, 17.877841
+0.000069, 2.235895, 18.017295
+0.001068, 2.249860, 18.000478
+-0.000074, 2.313594, 18.017370
+-0.000649, 2.302535, 18.000799
+-0.000016, 2.272556, 21.720820
+-0.000035, 2.272463, 21.759168
+-0.000036, 2.235558, 21.614426
+-0.001123, 2.249260, 21.629557
+0.000039, 2.314186, 21.614355
+0.000635, 2.303405, 21.629071
